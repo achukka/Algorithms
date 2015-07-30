@@ -1,16 +1,17 @@
-package com.algos.week3.sorting;
+package com.algos.week3.elementarysorts;
 
-public class InsertionSort<T> {
+public class SelectionSort<T> {
 	public void sort(Comparable<T>[] a) {
 		int N = a.length;
+		int min = 0;
 		for (int i = 0; i < N; i++) {
-			for (int j = i; j > 0; j--) {
-				if (less(a[j], a[j - 1])) {
-					exch(a, j, j - 1);
-				} else {
-					break;
+			min = i;
+			for (int j = i; j < N; j++) {
+				if (less(a[j], a[min])) {
+					min = j;
 				}
 			}
+			exch(a, i, min);
 		}
 	}
 

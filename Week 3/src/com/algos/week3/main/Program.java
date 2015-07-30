@@ -1,6 +1,12 @@
-package com.algos.week3.sorting;
+package com.algos.week3.main;
 
 import java.util.Scanner;
+
+import com.algos.week3.elementarysorts.InsertionSort;
+import com.algos.week3.elementarysorts.SelectionSort;
+import com.algos.week3.elementarysorts.ShellSort;
+import com.algos.week3.shuffle.KnuthShuffle;
+import com.algos.week3.sorting.MergeSort;
 
 public class Program {
 	static Scanner scanner;
@@ -8,11 +14,12 @@ public class Program {
 	static Character[] charArray;
 	static String[] stringArray;
 	static int response;
-	// 7 10 5 3 8 4 2 9 6 1
+
 	public static void main(String[] args) {
-		sortInteger();
-		sortCharacter();
-		sortString();
+		// sortInteger(); // 7 10 5 3 8 4 2 9 6 1
+		//sortCharacter(); // S O R T E X A M P L
+		 sortString(); // test aditya chukka string array
+		// shuffleArray();
 	}
 
 	private static void sortString() {
@@ -25,7 +32,7 @@ public class Program {
 			stringArray[i] = scanner.next();
 		}
 		System.out.println("Select the sorting method to be used");
-		System.out.println("1.SelectionSort\n2.InsertionSort\n3.ShellSort\n");
+		System.out.println("1.SelectionSort\n2.InsertionSort\n3.ShellSort\n4.MergeSort");
 		response = scanner.nextInt();
 		callSortingFunction(response, 3);
 	}
@@ -40,7 +47,7 @@ public class Program {
 			charArray[i] = scanner.next(".").charAt(0);
 		}
 		System.out.println("Select the sorting method to be used");
-		System.out.println("1.SelectionSort\n2.InsertionSort\n3.ShellSort\n");
+		System.out.println("1.SelectionSort\n2.InsertionSort\n3.ShellSort\n4.MergeSort");
 		response = scanner.nextInt();
 		callSortingFunction(response, 2);
 	}
@@ -55,7 +62,7 @@ public class Program {
 			intArray[i] = scanner.nextInt();
 		}
 		System.out.println("Select the sorting method to be used");
-		System.out.println("1.SelectionSort\n2.InsertionSort\n3.ShellSort\n");
+		System.out.println("1.SelectionSort\n2.InsertionSort\n3.ShellSort\n4.MergeSort");
 		response = scanner.nextInt();
 		callSortingFunction(response, 1);
 	}
@@ -71,10 +78,55 @@ public class Program {
 		case 3:
 			shellSort(arrayType);
 			break;
+		case 4:
+			mergeSort(arrayType);
+			break;
 		default:
 			System.out.println("Wrong option Bro!!");
 			break;
 		}
+	}
+
+	private static void mergeSort(int arrayType) {
+		System.out.println("Before Merge Sort");
+		switch (arrayType) {
+		case 1:
+			mergeSortIntArray();
+			break;
+		case 2:
+			mergeSortCharArray();
+			break;
+		case 3:
+			mergeSortStringArray();
+			break;
+		default:
+			System.out.println("Array Type Not supported!!");
+			break;
+		}
+	}
+
+	private static void mergeSortIntArray() {
+		MergeSort<Integer> mergeSort = new MergeSort<>();
+		mergeSort.display(intArray);
+		mergeSort.sort(intArray);
+		System.out.println("After Merge Sort");
+		mergeSort.display(intArray);
+	}
+
+	private static void mergeSortCharArray() {
+		MergeSort<Character> mergeSort = new MergeSort<>();
+		mergeSort.display(charArray);
+		mergeSort.sort(charArray);
+		System.out.println("After Merge Sort");
+		mergeSort.display(charArray);
+	}
+
+	private static void mergeSortStringArray() {
+		MergeSort<String> mergeSort = new MergeSort<>();
+		mergeSort.display(stringArray);
+		mergeSort.sort(stringArray);
+		System.out.println("After Merge Sort");
+		mergeSort.display(stringArray);
 	}
 
 	private static void shellSort(int arrayType) {
@@ -201,5 +253,12 @@ public class Program {
 		selectionSort.sort(intArray);
 		System.out.println("After Selection Sort");
 		selectionSort.display(intArray);
+	}
+
+	private static void shuffleArray() {
+		KnuthShuffle<Integer> knuthShuffle = new KnuthShuffle<>();
+		knuthShuffle.shuffle(intArray);
+		System.out.println("After Shuffling");
+		knuthShuffle.display(intArray);
 	}
 }

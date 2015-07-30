@@ -1,4 +1,4 @@
-package com.algos.week3.sorting;
+package com.algos.week3.elementarysorts;
 
 // here we use h = 7,3,1 , f(h) = 2*f(h-1) + 1
 public class ShellSort<T> {
